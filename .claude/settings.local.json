@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm --version)",
+      "Bash(npx turbo:*)",
+      "Bash(npm install:*)",
+      "Bash(npx create-expo-app@latest mobile --template blank-typescript)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm typecheck:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm turbo:*)",
+      "Bash(ls:*)",
+      "Bash(python3 -c \":*)",
+      "Bash(node -e \":*)",
+      "Bash(cd:*)",
+      "Bash(pnpm build:*)",
+      "Bash(node -e \"const j=require\\(''./apps/mobile/package.json''\\);console.log\\(''@supabase/supabase-js:'', j.dependencies?.[''@supabase/supabase-js''] || ''NOT INSTALLED''\\);console.log\\(''async-storage:'', j.dependencies?.[''@react-native-async-storage/async-storage''] || ''NOT INSTALLED''\\);\")",
+      "Bash(npx tsc:*)",
+      "Bash(npx expo:*)",
+      "Bash(node -e \"console.log\\(require\\(''react-native-reanimated/package.json''\\).version\\)\")",
+      "Bash(node -e \"console.log\\(require\\(''@babel/core/package.json''\\).version\\)\")",
+      "Bash(node -e \"const p = require\\(''nativewind/babel''\\); console.log\\(typeof p, Object.keys\\(p\\)\\)\")",
+      "Bash(node -e \"const p = require\\(''react-native-reanimated/plugin''\\); console.log\\(typeof p, Object.keys\\(p\\)\\)\")",
+      "Bash(node -e \"console.log\\(require.resolve\\(''''babel-preset-expo''''\\)\\)\")",
+      "Bash(node -e \"const p = require\\(''react-native-reanimated/plugin''\\); const r = p\\({ types: {}, assertVersion: \\(\\) => {} }, {}\\); console.log\\(Object.keys\\(r\\)\\);\")",
+      "Bash(node -e \"console.log\\(require\\(''react-native-css-interop/package.json''\\).version\\)\")",
+      "Bash(node -e \"console.log\\(require.resolve\\(''react-native-css-interop/jsx-runtime''\\)\\)\")",
+      "Bash(node -e \"const s = require\\(''react-native-screens''\\); console.log\\(''version:'', require\\(''react-native-screens/package.json''\\).version\\); console.log\\(''featureFlags:'', JSON.stringify\\(s.featureFlags\\)\\)\")"
+    ]
+  },
+  "prefersReducedMotion": true
+}

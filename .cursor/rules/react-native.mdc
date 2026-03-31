@@ -1,0 +1,54 @@
+---
+description: React Native + Expo rules for Train Track
+globs: ["apps/mobile/**/*.{ts,tsx}", "packages/ui/**/*.{ts,tsx}"]
+alwaysApply: true
+---
+
+# React Native Rules
+
+## FORBIDDEN — will break the app
+- `<div>`, `<span>`, `<p>`, `<button>`, `<input>`, `<img>`, `<a>` — use RN primitives
+- `StyleSheet.create({})` — use NativeWind `className` instead
+- `style={{ ... }}` inline styles — use `className` instead
+- `framer-motion` — use `react-native-reanimated`
+- `lucide-react` — use `@expo/vector-icons` (Ionicons)
+- `useNavigation` with raw string routes — use typed Expo Router `router.push()`
+- `import { Link } from 'react-router-dom'` — use `import { Link } from 'expo-router'`
+
+## Required primitives
+| Web | React Native |
+|-----|-------------|
+| `<div>` | `<View>` |
+| `<p>`, `<span>` | `<Text>` |
+| `<button>` | `<Pressable>` |
+| `<input>` | `<TextInput>` |
+| `<ul>/<li>` | `<FlatList>` or `<ScrollView>` |
+| `<img>` | `<Image>` from react-native |
+
+## NativeWind patterns
+```tsx
+// ✅ Correct
+<View className="flex-1 bg-slate-900 px-5">
+  <Text className="text-white font-bold text-xl">Hello</Text>
+  <Pressable className="bg-blue-600 rounded-xl py-3 active:bg-blue-700">
+    <Text className="text-white text-center font-semibold">Press</Text>
+  </Pressable>
+</View>
+
+// ❌ Wrong
+<div style={{ flex: 1, backgroundColor: '#0f172a' }}>
+  <span style={{ color: 'white', fontWeight: 'bold' }}>Hello</span>
+</div>
+```
+
+## Import aliases
+- `@shared/*` → `packages/shared/src/*` (types, schemas, constants)
+- `@ui/*` → `packages/ui/src/*` (shared components)
+- `@/*` → `apps/mobile/src/*` (local components, hooks, stores, services)
+
+## File locations
+- Route files: `apps/mobile/app/**/*.tsx`
+- Components: `apps/mobile/src/components/`
+- Zustand stores: `apps/mobile/src/store/`
+- Custom hooks: `apps/mobile/src/hooks/`
+- Supabase services: `apps/mobile/src/services/`
