@@ -165,7 +165,27 @@ VALUES
   ('a5d6e7f8-e9f0-1234-8901-345678901234', 'DB Romanian Deadlift', 'Dumbbell RDL for hamstrings',         'accessory',  true),
   ('a6e7f8a9-f0a1-2345-9012-456789012345', 'Weighted Step-up', 'Step-up with dumbbells or barbell',       'accessory',  true),
   ('a7f8a9b0-a1b2-3456-0123-567890123456', 'GHD Hip Extension', 'Glute-ham developer hip extension',     'accessory',  true),
-  ('a8a9b0c1-b2c3-4567-1234-678901234567', 'Plank',         'Isometric core hold',                        'gymnastics', true);
+  ('a8a9b0c1-b2c3-4567-1234-678901234567', 'Plank',         'Isometric core hold',                        'gymnastics', true),
+  -- Additional lifting movements
+  ('b0a1b2c3-0001-4000-a001-000000000001', 'Overhead Squat',       'Barbell overhead squat — full depth',           'olympic',      true),
+  ('b0a1b2c3-0001-4000-a001-000000000002', 'Power Clean',          'Clean caught above parallel',                   'olympic',      true),
+  ('b0a1b2c3-0001-4000-a001-000000000003', 'Clean & Split Jerk',   'Full clean followed by split jerk',             'olympic',      true),
+  ('b0a1b2c3-0001-4000-a001-000000000004', 'Clean & Push Jerk',    'Full clean followed by push jerk',              'olympic',      true),
+  ('b0a1b2c3-0001-4000-a001-000000000005', 'Split Jerk',           'Jerk with split footwork',                      'olympic',      true),
+  ('b0a1b2c3-0001-4000-a001-000000000006', 'Push Jerk',            'Jerk with push/dip drive',                      'olympic',      true),
+  -- Aerobic / conditioning
+  ('b0a1b2c3-0001-4000-a001-000000000007', 'Assault Bike',         'Air bike for calories or distance',             'conditioning', true),
+  ('b0a1b2c3-0001-4000-a001-000000000008', 'Assault Row',          'Rowing ergometer for calories or distance',     'conditioning', true),
+  ('b0a1b2c3-0001-4000-a001-000000000009', 'Ski Erg',              'Ski ergometer for calories or distance',        'conditioning', true),
+  ('b0a1b2c3-0001-4000-a001-000000000010', 'Running',              'Running for distance or time',                  'conditioning', true),
+  -- Gymnastics movements
+  ('b0a1b2c3-0001-4000-a001-000000000011', 'Strict Pull-up',       'Dead-hang strict pull-up',                      'gymnastics',   true),
+  ('b0a1b2c3-0001-4000-a001-000000000012', 'Kipping Pull-up',      'Pull-up with kipping hip drive',                'gymnastics',   true),
+  ('b0a1b2c3-0001-4000-a001-000000000013', 'Butterfly Pull-up',    'Pull-up with butterfly kip',                    'gymnastics',   true),
+  ('b0a1b2c3-0001-4000-a001-000000000014', 'Chest-to-Bar Pull-up', 'C2B — pull-up to chest contact',               'gymnastics',   true),
+  ('b0a1b2c3-0001-4000-a001-000000000015', 'Bar Muscle-Up',        'BMU — kip to support on pull-up bar',          'gymnastics',   true),
+  ('b0a1b2c3-0001-4000-a001-000000000016', 'Ring Muscle-Up',       'RMU — kip to support on rings',               'gymnastics',   true),
+  ('b0a1b2c3-0001-4000-a001-000000000017', 'Kipping HSPU',         'Kipping handstand push-up',                     'gymnastics',   true);
 
 
 -- ═══════════════════════════════════════════════════════════════

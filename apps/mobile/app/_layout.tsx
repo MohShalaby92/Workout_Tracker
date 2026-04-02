@@ -1,8 +1,8 @@
 import "../global.css";
 
 import { useEffect } from "react";
-import { Platform } from "react-native";
-import { Stack } from "expo-router";
+import { Platform, View, ActivityIndicator } from "react-native";
+import { Stack, useRouter, useSegments } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import { initSupabase } from "@shared/api/supabase";
@@ -23,7 +23,9 @@ if (Platform.OS !== "web" || typeof window !== "undefined") {
 }
 
 export default function RootLayout() {
-  const { session, isLoading, initialize } = useAuthStore();
+  const { session, profile, isLoading, initialize } = useAuthStore();
+  const segments = useSegments();
+  const router = useRouter();
 
   useEffect(() => {
     initialize();
@@ -35,19 +37,44 @@ export default function RootLayout() {
     }
   }, [isLoading]);
 
+  // Auth-based routing — runs whenever session/profile/segments change
+  useEffect(() => {
+    if (isLoading) return;
+
+    const inAuthGroup = segments[0] === "(auth)";
+    const isAuthenticated = !!session;
+
+    if (!isAuthenticated && !inAuthGroup) {
+      // Not logged in and not on auth screen → go to login
+      router.replace("/(auth)/login");
+    } else if (isAuthenticated && inAuthGroup) {
+      // Wait until profile is loaded before routing — avoids race condition
+      // where session arrives before profile, defaulting to wrong role
+      if (!profile) return;
+
+      if (profile.role === "coach") {
+        router.replace("/(coach)/dashboard");
+      } else {
+        router.replace("/(client)/train");
+      }
+    }
+  }, [isLoading, session, profile, segments]);
+
   if (isLoading) {
-    return null;
+    return (
+      <View className="flex-1 bg-navy-deep items-center justify-center">
+        <ActivityIndicator size="large" color="#00E5CC" />
+      </View>
+    );
   }
 
-  // TODO: Re-enable auth guards once login flow is wired up
-  // For now, always show coach layout for development
   return (
     <>
       <StatusBar style="light" />
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(auth)" redirect={true} />
+        <Stack.Screen name="(auth)" />
         <Stack.Screen name="(coach)" />
-        <Stack.Screen name="(client)" redirect={true} />
+        <Stack.Screen name="(client)" />
       </Stack>
     </>
   );

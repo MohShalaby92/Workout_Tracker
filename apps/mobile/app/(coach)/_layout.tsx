@@ -204,6 +204,7 @@ export default function CoachLayout() {
     >
       <Drawer.Screen name="dashboard" />
       <Drawer.Screen name="programs" />
+      <Drawer.Screen name="program-detail" options={{ drawerItemStyle: { display: "none" } }} />
       <Drawer.Screen name="clients" />
       <Drawer.Screen name="library" />
       <Drawer.Screen name="pr-tracker" />

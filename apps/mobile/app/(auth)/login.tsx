@@ -1,14 +1,21 @@
 import { useState } from "react";
-import { View, Text, ScrollView, Pressable, KeyboardAvoidingView, Platform } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Pressable,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
+  ActivityIndicator,
+} from "react-native";
 import { router } from "expo-router";
 import { useAuthStore } from "@/store/auth";
-import { Input } from "@ui/components/Input";
-import { Button } from "@ui/components/Button";
 import type { LoginInput } from "@shared/schemas/auth";
 import { loginSchema } from "@shared/schemas/auth";
 
 export default function LoginScreen() {
-  const { signIn, isLoading } = useAuthStore();
+  const { signIn, isSubmitting } = useAuthStore();
   const [form, setForm] = useState<LoginInput>({ email: "", password: "" });
   const [errors, setErrors] = useState<Partial<LoginInput>>({});
   const [authError, setAuthError] = useState<string | null>(null);
@@ -40,56 +47,100 @@ export default function LoginScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      className="flex-1 bg-slate-900"
+      className="flex-1 bg-navy-deep"
     >
       <ScrollView
         contentContainerClassName="flex-grow justify-center px-6 py-12"
         keyboardShouldPersistTaps="handled"
       >
+        {/* Logo */}
         <View className="items-center mb-10">
-          <Text className="text-4xl font-bold text-white tracking-tight">Train Track</Text>
-          <Text className="text-slate-400 mt-2 text-base">Sign in to your account</Text>
+          <View className="border-t-[3px] border-gray-200 pt-1.5 mb-1">
+            <Text className="text-gray-200 text-[32px] font-black leading-none">
+              train
+            </Text>
+            <Text className="text-gray-200 text-[32px] font-black leading-none">
+              track
+            </Text>
+          </View>
+          <View className="border-t-[3px] border-gray-200 w-[120px] mt-1.5 mb-4" />
+          <Text className="text-gray-400 text-base">
+            Sign in to your account
+          </Text>
         </View>
 
         <View className="gap-4">
-          <Input
-            label="Email"
-            value={form.email}
-            onChangeText={(v) => handleChange("email", v)}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoComplete="email"
-            placeholder="you@example.com"
-            error={errors.email}
-          />
+          {/* Email */}
+          <View className="gap-1">
+            <Text className="text-sm font-medium text-gray-300">Email</Text>
+            <TextInput
+              value={form.email}
+              onChangeText={(v) => handleChange("email", v)}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoComplete="email"
+              placeholder="you@example.com"
+              placeholderTextColor="#6B7280"
+              className={`bg-navy-card border rounded-xl px-4 py-3 text-gray-100 text-base ${
+                errors.email
+                  ? "border-red-500"
+                  : "border-navy-border"
+              }`}
+            />
+            {errors.email ? (
+              <Text className="text-xs text-red-500">{errors.email}</Text>
+            ) : null}
+          </View>
 
-          <Input
-            label="Password"
-            value={form.password}
-            onChangeText={(v) => handleChange("password", v)}
-            secureTextEntry
-            autoComplete="current-password"
-            placeholder="••••••••"
-            error={errors.password}
-          />
+          {/* Password */}
+          <View className="gap-1">
+            <Text className="text-sm font-medium text-gray-300">Password</Text>
+            <TextInput
+              value={form.password}
+              onChangeText={(v) => handleChange("password", v)}
+              secureTextEntry
+              autoComplete="current-password"
+              placeholder="••••••••"
+              placeholderTextColor="#6B7280"
+              className={`bg-navy-card border rounded-xl px-4 py-3 text-gray-100 text-base ${
+                errors.password
+                  ? "border-red-500"
+                  : "border-navy-border"
+              }`}
+            />
+            {errors.password ? (
+              <Text className="text-xs text-red-500">{errors.password}</Text>
+            ) : null}
+          </View>
 
           {authError ? (
-            <Text className="text-sm text-red-400 text-center">{authError}</Text>
+            <Text className="text-sm text-red-500 text-center">
+              {authError}
+            </Text>
           ) : null}
 
-          <Button
-            label="Sign In"
+          {/* Sign In Button */}
+          <Pressable
             onPress={handleSubmit}
-            loading={isLoading}
-            fullWidth
-            size="lg"
-          />
+            disabled={isSubmitting}
+            className={`bg-teal-proto py-3.5 rounded-xl items-center ${
+              isSubmitting ? "opacity-50" : ""
+            }`}
+          >
+            {isSubmitting ? (
+              <ActivityIndicator size="small" color="#0F1117" />
+            ) : (
+              <Text className="text-navy-deep font-bold text-base">
+                Sign In
+              </Text>
+            )}
+          </Pressable>
         </View>
 
         <View className="flex-row justify-center mt-6">
-          <Text className="text-slate-400">Don&apos;t have an account? </Text>
+          <Text className="text-gray-400">Don&apos;t have an account? </Text>
           <Pressable onPress={() => router.push("/(auth)/signup")}>
-            <Text className="text-blue-400 font-semibold">Sign Up</Text>
+            <Text className="text-teal-proto font-semibold">Sign Up</Text>
           </Pressable>
         </View>
       </ScrollView>
