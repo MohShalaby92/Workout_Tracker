@@ -63,7 +63,7 @@ function DaySelector({
             className={`px-3.5 py-1.5 rounded-md border ${
               isSelected
                 ? "bg-teal-proto border-teal-proto"
-                : "bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700"
+                : "bg-gray-100 dark:bg-navy-card border-gray-200 dark:border-navy-border"
             }`}
           >
             <Text
@@ -80,7 +80,7 @@ function DaySelector({
       })}
       <Pressable
         onPress={onAddDay}
-        className="px-2 py-1.5 rounded-md border bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 items-center justify-center"
+        className="px-2 py-1.5 rounded-md border bg-gray-100 dark:bg-navy-card border-gray-200 dark:border-navy-border items-center justify-center"
       >
         <Ionicons name="add" size={16} color="#9CA3AF" />
       </Pressable>
@@ -105,7 +105,7 @@ function FormatSettingInput({
   useEffect(() => { setLocal(value); }, [value]);
   return (
     <View className="flex-row items-center gap-2">
-      <Text className="text-[11px] text-gray-600 dark:text-gray-400">{label}</Text>
+      <Text className="text-[11px] text-gray-500 dark:text-gray-400">{label}</Text>
       <TextInput
         value={local}
         onChangeText={setLocal}
@@ -113,7 +113,7 @@ function FormatSettingInput({
         keyboardType="numeric"
         placeholder={placeholder}
         placeholderTextColor="#9CA3AF"
-        className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-2.5 py-1.5 text-gray-900 dark:text-white text-xs w-14 text-center"
+        className="bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-lg px-2.5 py-1.5 text-gray-900 dark:text-gray-200 text-xs w-14 text-center"
       />
     </View>
   );
@@ -267,10 +267,10 @@ function ExerciseRow({
   const [localNotes, setLocalNotes] = useState(item.notes ?? "");
 
   return (
-    <View className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 mb-2">
+    <View className="bg-gray-50 dark:bg-navy-input rounded-lg p-3 mb-2">
       {/* Exercise name + delete */}
       <View className="flex-row justify-between items-center mb-2">
-        <Text className="text-sm font-medium text-gray-900 dark:text-white flex-1">
+        <Text className="text-sm font-bold text-gray-900 dark:text-gray-200 flex-1">
           {item.exercise?.name ?? "Unknown Exercise"}
         </Text>
         <Pressable onPress={() => onRemove(item.id)} hitSlop={8}>
@@ -292,7 +292,7 @@ function ExerciseRow({
             keyboardType="numeric"
             placeholder="—"
             placeholderTextColor="#9CA3AF"
-            className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1.5 text-gray-900 dark:text-white text-xs text-center"
+            className="bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-lg px-2 py-1.5 text-gray-900 dark:text-gray-200 text-xs text-center"
           />
         </View>
         <View className="flex-1">
@@ -317,7 +317,7 @@ function ExerciseRow({
             }}
             placeholder="e.g. 8-12"
             placeholderTextColor="#9CA3AF"
-            className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1.5 text-gray-900 dark:text-white text-xs text-center"
+            className="bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-lg px-2 py-1.5 text-gray-900 dark:text-gray-200 text-xs text-center"
           />
         </View>
         <View className="flex-1">
@@ -353,7 +353,7 @@ function ExerciseRow({
             keyboardType="numeric"
             placeholder="—"
             placeholderTextColor="#9CA3AF"
-            className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1.5 text-gray-900 dark:text-white text-xs text-center"
+            className="bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-lg px-2 py-1.5 text-gray-900 dark:text-gray-200 text-xs text-center"
           />
         </View>
       </View>
@@ -372,7 +372,7 @@ function ExerciseRow({
             keyboardType="numeric"
             placeholder="—"
             placeholderTextColor="#9CA3AF"
-            className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1.5 text-gray-900 dark:text-white text-xs text-center"
+            className="bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-lg px-2 py-1.5 text-gray-900 dark:text-gray-200 text-xs text-center"
           />
         </View>
         <View className="flex-1">
@@ -388,7 +388,7 @@ function ExerciseRow({
               keyboardType="numeric"
               placeholder="—"
               placeholderTextColor="#9CA3AF"
-              className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1.5 text-gray-900 dark:text-white text-xs text-center flex-1"
+              className="bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-lg px-2 py-1.5 text-gray-900 dark:text-gray-200 text-xs text-center flex-1"
             />
             {REST_PRESETS_SECONDS.slice(0, 5).map((sec) => (
               <Pressable
@@ -397,17 +397,17 @@ function ExerciseRow({
                   setLocalRest(String(sec));
                   onUpdate(item.id, { rest_sec: sec });
                 }}
-                className={`px-1.5 py-1.5 rounded border ${
+                className={`rounded-md px-2.5 py-1 ${
                   item.rest_sec === sec
-                    ? "border-teal-proto bg-teal-proto"
-                    : "bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    ? "bg-teal-proto"
+                    : "bg-navy-border"
                 }`}
               >
                 <Text
                   className={`text-[9px] ${
                     item.rest_sec === sec
-                      ? "text-white font-semibold"
-                      : "text-gray-600 dark:text-gray-300"
+                      ? "text-navy-deep font-bold"
+                      : "text-gray-400"
                   }`}
                 >
                   {sec}
@@ -427,7 +427,7 @@ function ExerciseRow({
         placeholderTextColor="#9CA3AF"
         multiline
         maxLength={250}
-        className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-2.5 py-1.5 text-gray-900 dark:text-white text-xs min-h-[32px]"
+        className="bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-lg px-2.5 py-1.5 text-gray-900 dark:text-gray-200 text-xs min-h-[32px]"
       />
 
       {/* Injury warnings */}
@@ -482,9 +482,9 @@ function SectionCard({
   ][];
 
   return (
-    <View className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 mb-4 overflow-hidden">
+    <View className="bg-white dark:bg-navy-card rounded-xl border border-gray-200 dark:border-navy-border mb-4 overflow-hidden">
       {/* Section header */}
-      <View className="flex-row items-center p-3 border-b border-gray-200 dark:border-gray-700">
+      <View className="flex-row items-center p-3 border-b border-gray-200 dark:border-navy-border">
         <View className="w-8 h-8 rounded-lg bg-teal-proto items-center justify-center mr-3">
           <Text className="text-navy-deep font-bold text-sm">
             {section.letter}
@@ -500,11 +500,11 @@ function SectionCard({
           }}
           placeholder="Section title"
           placeholderTextColor="#6B7280"
-          className="flex-1 text-gray-900 dark:text-white text-sm font-medium mr-2"
+          className="flex-1 text-gray-900 dark:text-gray-200 text-sm font-medium mr-2"
         />
         <Pressable
           onPress={() => setShowFormatPicker(true)}
-          className="flex-row items-center bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg px-2.5 py-1.5 mr-2"
+          className="flex-row items-center bg-gray-100 dark:bg-navy-input border border-gray-300 dark:border-navy-border rounded-lg px-2.5 py-1.5 mr-2"
         >
           <Text className="text-[11px] text-teal-proto font-semibold mr-1">
             {SECTION_FORMAT_LABELS[section.format]}
@@ -541,7 +541,7 @@ function SectionCard({
 
         <Pressable
           onPress={() => onAddExercise(section.id)}
-          className="flex-row items-center justify-center gap-1.5 py-2.5 bg-gray-100 dark:bg-gray-800 border border-dashed border-gray-200 dark:border-gray-700 rounded-lg mt-1"
+          className="flex-row items-center justify-center gap-1.5 py-2.5 bg-gray-100 dark:bg-navy-card border border-dashed border-gray-200 dark:border-navy-border rounded-lg mt-1"
         >
           <Ionicons name="add" size={14} color="#9CA3AF" />
           <Text className="text-xs text-gray-600 dark:text-gray-300 font-medium">
@@ -561,8 +561,8 @@ function SectionCard({
           onPress={() => setShowFormatPicker(false)}
           className="flex-1 justify-center items-center bg-black/60"
         >
-          <View className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 w-64 overflow-hidden">
-            <Text className="text-gray-900 dark:text-white font-bold text-sm p-3 border-b border-gray-200 dark:border-gray-700">
+          <View className="bg-white dark:bg-navy-card rounded-xl border border-gray-200 dark:border-navy-border w-64 overflow-hidden">
+            <Text className="text-gray-900 dark:text-gray-200 font-bold text-sm p-3 border-b border-gray-200 dark:border-navy-border">
               Section Format
             </Text>
             {formats.map(([key, label]) => (
@@ -575,7 +575,7 @@ function SectionCard({
                   });
                   setShowFormatPicker(false);
                 }}
-                className={`px-3 py-2.5 border-b border-gray-200 dark:border-gray-700 ${
+                className={`px-3 py-2.5 border-b border-gray-200 dark:border-navy-border ${
                   section.format === key ? "bg-teal-muted" : ""
                 }`}
               >
@@ -652,10 +652,10 @@ function ExercisePickerModal({
           setExerciseSearch("");
           setExerciseCategory(null);
         }}
-        className="flex-row items-center px-4 py-3 border-b border-gray-200 dark:border-gray-700"
+        className="flex-row items-center px-4 py-3 border-b border-gray-200 dark:border-navy-border"
       >
         <View className="flex-1">
-          <Text className="text-sm text-gray-900 dark:text-white">{item.name}</Text>
+          <Text className="text-sm text-gray-900 dark:text-gray-200">{item.name}</Text>
           <Text className="text-[10px] text-gray-500 capitalize">
             {item.category}
           </Text>
@@ -674,10 +674,10 @@ function ExercisePickerModal({
       onRequestClose={onClose}
     >
       <View className="flex-1 justify-end bg-black/50">
-        <View className="bg-white dark:bg-gray-800 rounded-t-2xl h-[80%]">
+        <View className="bg-white dark:bg-navy-card rounded-t-2xl h-[80%]">
           {/* Header */}
-          <View className="flex-row justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
-            <Text className="text-lg font-bold text-gray-900 dark:text-white">
+          <View className="flex-row justify-between items-center p-4 border-b border-gray-200 dark:border-navy-border">
+            <Text className="text-lg font-bold text-gray-900 dark:text-gray-200">
               Add Exercise
             </Text>
             <Pressable onPress={onClose} hitSlop={8}>
@@ -687,39 +687,35 @@ function ExercisePickerModal({
 
           {/* Search */}
           <View className="px-4 py-3">
-            <View className="flex-row items-center bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl px-3">
+            <View className="flex-row items-center bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-xl px-3">
               <Ionicons name="search" size={16} color="#9CA3AF" />
               <TextInput
                 value={exerciseSearch}
                 onChangeText={setExerciseSearch}
                 placeholder="Search exercises..."
                 placeholderTextColor="#9CA3AF"
-                className="flex-1 py-2.5 ml-2 text-gray-900 dark:text-white text-sm"
+                className="flex-1 py-2.5 ml-2 text-gray-900 dark:text-gray-200 text-sm"
               />
             </View>
           </View>
 
           {/* Category tabs */}
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerClassName="px-4 pb-2 gap-2"
-          >
+          <View className="flex-row flex-wrap gap-2 px-4 pb-2">
             {categories.map((cat) => (
               <Pressable
                 key={cat ?? "all"}
                 onPress={() => setExerciseCategory(cat)}
-                className={`min-w-[48px] items-center px-3 py-1.5 rounded-full border ${
+                className={`px-3.5 py-1.5 rounded-md border ${
                   exerciseCategory === cat
                     ? "bg-teal-proto border-teal-proto"
-                    : "bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                    : "bg-transparent border-gray-300 dark:border-navy-border"
                 }`}
               >
                 <Text
-                  className={`text-xs font-medium ${
+                  className={`text-xs font-semibold ${
                     exerciseCategory === cat
                       ? "text-navy-deep"
-                      : "text-gray-400"
+                      : "text-gray-500 dark:text-gray-400"
                   }`}
                 >
                   {cat
@@ -728,7 +724,7 @@ function ExercisePickerModal({
                 </Text>
               </Pressable>
             ))}
-          </ScrollView>
+          </View>
 
           {/* Exercise list */}
           {exercisesLoading ? (
@@ -762,19 +758,15 @@ function ExercisePickerModal({
               </Text>
             </Pressable>
           ) : (
-            <View className="mx-4 mb-4 p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
+            <View className="mx-4 mb-4 p-3 bg-gray-50 dark:bg-navy-input rounded-xl border border-gray-200 dark:border-navy-border">
               <TextInput
                 value={newName}
                 onChangeText={setNewName}
                 placeholder="Exercise name"
                 placeholderTextColor="#9CA3AF"
-                className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm mb-2"
+                className="bg-gray-100 dark:bg-navy-card border border-gray-200 dark:border-navy-border rounded-lg px-3 py-2 text-gray-900 dark:text-gray-200 text-sm mb-2"
               />
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerClassName="gap-2 mb-2"
-              >
+              <View className="flex-row flex-wrap gap-2 mb-2">
                 {(
                   [
                     "olympic",
@@ -787,31 +779,31 @@ function ExercisePickerModal({
                   <Pressable
                     key={cat}
                     onPress={() => setNewCategory(cat)}
-                    className={`px-3 py-1.5 rounded-full border ${
+                    className={`px-3.5 py-1.5 rounded-md border ${
                       newCategory === cat
                         ? "bg-teal-proto border-teal-proto"
-                        : "bg-gray-100 dark:bg-gray-700 border-gray-200 dark:border-gray-600"
+                        : "bg-transparent border-gray-300 dark:border-navy-border"
                     }`}
                   >
                     <Text
-                      className={`text-xs ${
+                      className={`text-xs font-semibold ${
                         newCategory === cat
-                          ? "text-navy-deep font-semibold"
-                          : "text-gray-400"
+                          ? "text-navy-deep"
+                          : "text-gray-500 dark:text-gray-400"
                       }`}
                     >
                       {EXERCISE_CATEGORY_LABELS[cat]}
                     </Text>
                   </Pressable>
                 ))}
-              </ScrollView>
+              </View>
               <View className="flex-row gap-2">
                 <Pressable
                   onPress={() => {
                     setShowCreate(false);
                     setNewName("");
                   }}
-                  className="flex-1 py-2 rounded-lg border border-gray-200 dark:border-gray-600 items-center"
+                  className="flex-1 py-2 rounded-lg border border-gray-200 dark:border-navy-border items-center"
                 >
                   <Text className="text-xs text-gray-400">Cancel</Text>
                 </Pressable>
@@ -865,8 +857,8 @@ function AddSectionModal({
         onPress={onClose}
         className="flex-1 justify-center items-center bg-black/60"
       >
-        <View className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 w-72 overflow-hidden">
-          <Text className="text-gray-900 dark:text-white font-bold text-base p-4 border-b border-gray-200 dark:border-gray-700">
+        <View className="bg-white dark:bg-navy-card rounded-xl border border-gray-200 dark:border-navy-border w-72 overflow-hidden">
+          <Text className="text-gray-900 dark:text-gray-200 font-bold text-base p-4 border-b border-gray-200 dark:border-navy-border">
             Add Section
           </Text>
           {formats.map(([key, label]) => (
@@ -876,7 +868,7 @@ function AddSectionModal({
                 onSelect(key);
                 onClose();
               }}
-              className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 active:bg-gray-100 dark:active:bg-gray-700"
+              className="px-4 py-3 border-b border-gray-200 dark:border-navy-border active:bg-gray-100 dark:active:bg-navy-input"
             >
               <Text className="text-sm text-gray-700 dark:text-gray-300">{label}</Text>
             </Pressable>
@@ -1058,7 +1050,7 @@ export default function ProgramDetailScreen() {
   }, [currentTemplate, localNotes, updateWorkout]);
 
   return (
-    <View className="flex-1 bg-gray-50 dark:bg-navy-deep">
+    <View className="flex-1 bg-gray-100 dark:bg-navy-deep">
       <ScreenHeader
         title={program?.name ?? "Program"}
         showBack
@@ -1088,7 +1080,7 @@ export default function ProgramDetailScreen() {
           <Text className="text-sm text-[#00E5CC]">Programs</Text>
         </Pressable>
         <Text className="text-sm text-gray-400 dark:text-gray-500 mx-1">{">"}</Text>
-        <Text className="text-sm text-gray-900 dark:text-white font-medium">
+        <Text className="text-sm text-gray-900 dark:text-gray-200 font-bold">
           {program?.name ?? "Program"}
         </Text>
       </View>
@@ -1139,7 +1131,7 @@ export default function ProgramDetailScreen() {
             onBlur={handleTitleBlur}
             placeholder="Workout title"
             placeholderTextColor="#9CA3AF"
-            className="bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-2 text-lg font-bold text-gray-900 dark:text-white mb-2"
+            className="bg-gray-50 dark:bg-navy-input rounded-lg px-3 py-2 text-lg font-bold text-gray-900 dark:text-gray-200 mb-2"
           />
 
           {/* Workout notes */}
@@ -1151,7 +1143,7 @@ export default function ProgramDetailScreen() {
             placeholderTextColor="#9CA3AF"
             multiline
             maxLength={250}
-            className="bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white mb-5 min-h-[40px]"
+            className="bg-gray-50 dark:bg-navy-input rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-gray-200 mb-5 min-h-[40px]"
           />
 
           {/* Sections */}
@@ -1171,7 +1163,7 @@ export default function ProgramDetailScreen() {
           {/* Add section button */}
           <Pressable
             onPress={() => setAddSectionVisible(true)}
-            className="flex-row items-center justify-center gap-2 py-3.5 bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl"
+            className="flex-row items-center justify-center gap-2 py-3.5 bg-gray-100 dark:bg-navy-card border-2 border-dashed border-gray-200 dark:border-navy-border rounded-xl"
           >
             <Ionicons name="add" size={18} color="#9CA3AF" />
             <Text className="text-sm text-gray-600 dark:text-gray-300 font-semibold">
@@ -1206,8 +1198,8 @@ export default function ProgramDetailScreen() {
           onPress={() => setCopyModalVisible(false)}
           className="flex-1 justify-center items-center bg-black/60"
         >
-          <View className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 w-72 p-5">
-            <Text className="text-gray-900 dark:text-white font-bold text-base mb-4">
+          <View className="bg-white dark:bg-navy-card rounded-xl border border-gray-200 dark:border-navy-border w-72 p-5">
+            <Text className="text-gray-900 dark:text-gray-200 font-bold text-base mb-4">
               Copy Workout
             </Text>
             <Text className="text-sm text-gray-600 dark:text-gray-400 mb-3">
@@ -1222,13 +1214,13 @@ export default function ProgramDetailScreen() {
                   if (!isNaN(n) && n > 0) setCopyTargetDay(n);
                 }}
                 keyboardType="numeric"
-                className="bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2 text-gray-900 dark:text-white text-sm w-16 text-center"
+                className="bg-gray-100 dark:bg-navy-input border border-gray-200 dark:border-navy-border rounded-lg px-3 py-2 text-gray-900 dark:text-gray-200 text-sm w-16 text-center"
               />
             </View>
             <View className="flex-row gap-2">
               <Pressable
                 onPress={() => setCopyModalVisible(false)}
-                className="flex-1 py-2.5 rounded-lg border border-gray-200 dark:border-gray-600 items-center"
+                className="flex-1 py-2.5 rounded-lg border border-gray-200 dark:border-navy-border items-center"
               >
                 <Text className="text-sm text-gray-500">Cancel</Text>
               </Pressable>

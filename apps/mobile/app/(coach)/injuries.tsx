@@ -255,24 +255,20 @@ export default function InjuriesScreen() {
         </View>
 
         {/* Client filter */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerClassName="flex-row gap-2 mb-3"
-        >
+        <View className="flex-row gap-2 mb-3">
           <Pressable
             onPress={() => setFilterClientId(null)}
-            className={`h-9 px-4 rounded-full items-center justify-center ${
+            className={`px-3.5 py-1.5 rounded-md border ${
               filterClientId === null
-                ? "bg-[#00E5CC]"
-                : "bg-gray-200 dark:bg-gray-800"
+                ? "bg-teal-proto border-teal-proto"
+                : "bg-transparent border-gray-300 dark:border-navy-border"
             }`}
           >
             <Text
-              className={`text-sm ${
+              className={`text-xs capitalize ${
                 filterClientId === null
-                  ? "text-white font-bold"
-                  : "text-gray-600 dark:text-gray-400"
+                  ? "text-navy-deep font-semibold"
+                  : "text-gray-500 dark:text-gray-400"
               }`}
             >
               All Clients
@@ -284,24 +280,24 @@ export default function InjuriesScreen() {
               onPress={() =>
                 setFilterClientId(filterClientId === c.client_id ? null : c.client_id)
               }
-              className={`h-9 px-4 rounded-full items-center justify-center ${
+              className={`px-3.5 py-1.5 rounded-md border ${
                 filterClientId === c.client_id
-                  ? "bg-[#00E5CC]"
-                  : "bg-gray-200 dark:bg-gray-800"
+                  ? "bg-teal-proto border-teal-proto"
+                  : "bg-transparent border-gray-300 dark:border-navy-border"
               }`}
             >
               <Text
-                className={`text-sm ${
+                className={`text-xs capitalize ${
                   filterClientId === c.client_id
-                    ? "text-white font-bold"
-                    : "text-gray-600 dark:text-gray-400"
+                    ? "text-navy-deep font-semibold"
+                    : "text-gray-500 dark:text-gray-400"
                 }`}
               >
                 {c.user.name}
               </Text>
             </Pressable>
           ))}
-        </ScrollView>
+        </View>
 
         {/* Status filter */}
         <View className="flex-row gap-2 mb-4">
